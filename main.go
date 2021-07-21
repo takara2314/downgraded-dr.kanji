@@ -48,7 +48,7 @@ func callbackPOST(c *gin.Context) {
 					log.Println(err)
 					panic(err)
 				}
-				fmt.Printf("[CHAT] %s: %s", profile.DisplayName, message.Text)
+				fmt.Printf("[CHAT] %s: %s\n", profile.DisplayName, message.Text)
 				replyTextMessage(event, message.Text)
 			}
 		}
