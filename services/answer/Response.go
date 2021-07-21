@@ -57,11 +57,21 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 		}
 	}
 
+	if index >= len(quizes) {
+		_, err = bot.ReplyMessage(
+			event.ReplyToken,
+			linebot.NewTextMessage("不正なコマンドです。"),
+		).Do()
+		if err != nil {
+			return err
+		}
+	}
+
 	_, err = bot.ReplyMessage(
 		event.ReplyToken,
 		linebot.NewTextMessage(
 			strings.Join(
-				quizes[index][1:len(quizes[index])-1],
+				quizes[index][1:len(quizes[index])],
 				"，",
 			),
 		),

@@ -13,7 +13,7 @@ func device() ([]string, []string, int) {
 		{"対義語", "Antonyms"},
 		{"同音異義語", "Homonym"},
 		{"類義語", "Synonyms"},
-		{"参照", "Confer"},
+		{"参照(cf)", "Confer"},
 		{"四字熟語", "Four"},
 	}
 

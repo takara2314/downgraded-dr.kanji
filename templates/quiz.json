@@ -13,7 +13,7 @@
       },
       {
         "type": "text",
-        "text": "${quiz_kanji}の${quiz_type}を答えよ",
+        "text": "${quiz_kanji}の${quiz_type}を答えよ。",
         "weight": "bold",
         "size": "lg",
         "margin": "sm"

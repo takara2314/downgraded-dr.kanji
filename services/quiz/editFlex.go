@@ -33,7 +33,7 @@ func editFlex(base []byte) ([]byte, error) {
 		result,
 		"${id}",
 		fmt.Sprintf("%s %d", quizType[1], quizIndex),
-		1,
+		2,
 	)
 
 	return []byte(result), nil
