@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func device() ([]string, []string, int) {
+func device() ([]string, []string, int, int) {
 	// シード更新
 	rand.Seed(time.Now().Unix())
 
@@ -38,5 +38,8 @@ func device() ([]string, []string, int) {
 	// 問題 (index)
 	quizIndex := rand.Intn(len(quizes))
 
-	return types[quizTypeIndex], quizes[quizIndex], quizIndex
+	// 問題の何要素目
+	quizInIndex := rand.Intn(len(quizes[quizIndex]))
+
+	return types[quizTypeIndex], quizes[quizIndex], quizIndex, quizInIndex
 }

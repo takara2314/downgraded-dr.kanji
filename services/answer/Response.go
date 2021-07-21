@@ -67,13 +67,27 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 		}
 	}
 
+	// _, err = bot.ReplyMessage(
+	// 	event.ReplyToken,
+	// 	linebot.NewTextMessage(
+	// 		strings.Join(
+	// 			quizes[index][1:len(quizes[index])],
+	// 			"，",
+	// 		),
+	// 	),
+	// ).Do()
+	// if err != nil {
+	// 	return err
+	// }
+
 	_, err = bot.ReplyMessage(
 		event.ReplyToken,
 		linebot.NewTextMessage(
-			strings.Join(
-				quizes[index][1:len(quizes[index])],
-				"，",
-			),
+			"【問題と答え】\n"+
+				strings.Join(
+					quizes[index],
+					"，",
+				),
 		),
 	).Do()
 	if err != nil {

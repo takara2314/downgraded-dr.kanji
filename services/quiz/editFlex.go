@@ -9,13 +9,18 @@ import (
 func editFlex(base []byte) ([]byte, error) {
 	var result string = string(base)
 
-	quizType, quiz, quizIndex := device()
+	quizType, quiz, quizIndex, quizInIndex := device()
 
-	quizReg := regexp.MustCompile(`^(.*)（(.*)）$`)
-	// fmt.Println(quiz[0])
-	// fmt.Println(quizReg.FindStringSubmatch(quiz[0]))
-	// fmt.Println(len(quizReg.FindStringSubmatch(quiz[0])))
-	quizKanji := string(quizReg.FindStringSubmatch(quiz[0])[1])
+	var quizKanji string
+	if quizType[0] != "同音異義語" {
+		quizReg := regexp.MustCompile(`^(.*)（(.*)）$`)
+		quizKanji = string(quizReg.FindStringSubmatch(quiz[quizInIndex])[1])
+	} else {
+		if quizInIndex == 0 {
+			quizInIndex = 1
+		}
+		quizKanji = quiz[quizInIndex]
+	}
 
 	result = strings.Replace(
 		result,
