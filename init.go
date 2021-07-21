@@ -43,7 +43,7 @@ func init() {
 	quiz.Config = &config
 	answer.Config = &config
 
-	flexQuiz, err = ioutil.ReadFile("./templates/quizInfo.json")
+	flexQuiz, err = ioutil.ReadFile("./templates/quiz.json")
 	if err != nil {
 		log.Println(err)
 		panic(err)

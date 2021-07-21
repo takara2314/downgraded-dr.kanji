@@ -31,5 +31,15 @@ func replyTextMessage(event *linebot.Event, message string) {
 			log.Println(err)
 			panic(err)
 		}
+
+	} else {
+		_, err := bot.ReplyMessage(
+			event.ReplyToken,
+			linebot.NewTextMessage("現在quizと一部のコマンド以外対応できません。\nたからーんの貴重なテスト勉強時間にワシが呼び戻されたもの。"),
+		).Do()
+		if err != nil {
+			log.Println(err)
+			panic(err)
+		}
 	}
 }
