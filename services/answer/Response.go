@@ -24,14 +24,18 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 
 	// 問題集
 	var quizes [][]string
+	// つなぎ記号
+	var joinChar string = "，"
 
 	switch splited[1] {
 	case "Antonyms":
 		quizes = Config.Antonyms
+		joinChar = "←→"
 	case "Homonym":
 		quizes = Config.Homonym
 	case "Synonyms":
 		quizes = Config.Synonyms
+		joinChar = "≒"
 	case "Confer":
 		quizes = Config.Confer
 	case "Four":
@@ -86,7 +90,7 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 			"【問題と答え】\n"+
 				strings.Join(
 					quizes[index],
-					"，",
+					joinChar,
 				),
 		),
 	).Do()
