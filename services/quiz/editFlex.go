@@ -11,7 +11,10 @@ func editFlex(base []byte) ([]byte, error) {
 
 	quizType, quiz, quizIndex := device()
 
-	quizReg := regexp.MustCompile(`^([0-9]|[０-９]){5}$`)
+	quizReg := regexp.MustCompile(`^(.*)（(.*)）$`)
+	// fmt.Println(quiz[0])
+	// fmt.Println(quizReg.FindStringSubmatch(quiz[0]))
+	// fmt.Println(len(quizReg.FindStringSubmatch(quiz[0])))
 	quizKanji := string(quizReg.FindStringSubmatch(quiz[0])[1])
 
 	result = strings.Replace(
