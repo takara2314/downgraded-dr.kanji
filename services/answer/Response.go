@@ -30,12 +30,12 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 	switch splited[1] {
 	case "Antonyms":
 		quizes = Config.Antonyms
-		joinChar = "←→"
+		joinChar = "←→ "
 	case "Homonym":
 		quizes = Config.Homonym
 	case "Synonyms":
 		quizes = Config.Synonyms
-		joinChar = "≒"
+		joinChar = "≒ "
 	case "Confer":
 		quizes = Config.Confer
 	case "Four":

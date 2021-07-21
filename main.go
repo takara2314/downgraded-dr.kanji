@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -42,6 +43,12 @@ func callbackPOST(c *gin.Context) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
+				profile, err := bot.GetProfile(event.Source.UserID).Do()
+				if err != nil {
+					log.Println(err)
+					panic(err)
+				}
+				fmt.Printf("[CHAT] %s: %s", profile.DisplayName, message.Text)
 				replyTextMessage(event, message.Text)
 			}
 		}
