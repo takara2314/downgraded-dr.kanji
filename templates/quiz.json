@@ -1,0 +1,57 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "劣化版カンジー博士",
+        "weight": "bold",
+        "color": "#D97706",
+        "size": "sm"
+      },
+      {
+        "type": "text",
+        "text": "${quiz_kanji}の${quiz_type}を答えよ",
+        "weight": "bold",
+        "size": "lg",
+        "margin": "sm"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "答えを見る",
+          "text": "answer ${id}"
+        },
+        "style": "secondary",
+        "margin": "xl",
+        "height": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#aaaaaa",
+            "size": "xs",
+            "align": "end",
+            "text": "${id}"
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
