@@ -40,6 +40,10 @@ func device() ([]string, []string, int, int) {
 
 	// 問題の何要素目
 	quizInIndex := rand.Intn(len(quizes[quizIndex]))
+	// 四字熟語なら必然的に0
+	if quizTypeIndex == 4 {
+		quizInIndex = 0
+	}
 
 	return types[quizTypeIndex], quizes[quizIndex], quizIndex, quizInIndex
 }
