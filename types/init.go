@@ -5,5 +5,6 @@ type ConfigYaml struct {
 	Homonym  [][]string `yaml:"homonym"`
 	Synonyms [][]string `yaml:"synonyms"`
 	Confer   [][]string `yaml:"confer"`
+	Three    [][]string `yaml:"three"`
 	Four     [][]string `yaml:"four"`
 }

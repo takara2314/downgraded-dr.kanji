@@ -14,6 +14,7 @@ func device() ([]string, []string, int, int) {
 		{"同音異義語", "Homonym"},
 		{"類義語", "Synonyms"},
 		{"参照(cf)", "Confer"},
+		{"三字熟語", "Three"},
 		{"四字熟語", "Four"},
 	}
 
@@ -32,6 +33,8 @@ func device() ([]string, []string, int, int) {
 	case 3:
 		quizes = Config.Confer
 	case 4:
+		quizes = Config.Three
+	case 5:
 		quizes = Config.Four
 	}
 
@@ -41,7 +44,7 @@ func device() ([]string, []string, int, int) {
 	// 問題の何要素目
 	quizInIndex := rand.Intn(len(quizes[quizIndex]))
 	// 四字熟語なら必然的に0
-	if quizTypeIndex == 4 {
+	if quizTypeIndex == 5 {
 		quizInIndex = 0
 	}
 

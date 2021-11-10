@@ -38,6 +38,8 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 		joinChar = "≒ "
 	case "Confer":
 		quizes = Config.Confer
+	case "Three":
+		quizes = Config.Three
 	case "Four":
 		quizes = Config.Four
 	default:
