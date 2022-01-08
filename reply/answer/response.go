@@ -4,18 +4,19 @@ import (
 	"strconv"
 	"strings"
 
+	"downgraded-dr.kanji/common"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
-func Response(bot *linebot.Client, event *linebot.Event, message string) error {
+func Response(event *linebot.Event, message string) error {
 	var err error
 
 	splited := strings.Split(message, " ")
 
 	if len(splited) != 3 {
-		_, err = bot.ReplyMessage(
+		_, err = common.Bot.ReplyMessage(
 			event.ReplyToken,
-			linebot.NewTextMessage("不正なコマンドです。"),
+			linebot.NewTextMessage(common.InvalidCommand),
 		).Do()
 		if err != nil {
 			return err
@@ -29,23 +30,23 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 
 	switch splited[1] {
 	case "Antonyms":
-		quizes = Config.Antonyms
+		quizes = common.Quizzes.Antonyms
 		joinChar = "←→ "
 	case "Homonym":
-		quizes = Config.Homonym
+		quizes = common.Quizzes.Homonym
 	case "Synonyms":
-		quizes = Config.Synonyms
+		quizes = common.Quizzes.Synonyms
 		joinChar = "≒ "
 	case "Confer":
-		quizes = Config.Confer
+		quizes = common.Quizzes.Confer
 	case "Three":
-		quizes = Config.Three
+		quizes = common.Quizzes.Three
 	case "Four":
-		quizes = Config.Four
+		quizes = common.Quizzes.Four
 	default:
-		_, err = bot.ReplyMessage(
+		_, err = common.Bot.ReplyMessage(
 			event.ReplyToken,
-			linebot.NewTextMessage("不正なコマンドです。"),
+			linebot.NewTextMessage(common.InvalidCommand),
 		).Do()
 		if err != nil {
 			return err
@@ -54,9 +55,9 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 
 	index, err := strconv.Atoi(splited[2])
 	if err != nil {
-		_, err = bot.ReplyMessage(
+		_, err = common.Bot.ReplyMessage(
 			event.ReplyToken,
-			linebot.NewTextMessage("不正なコマンドです。"),
+			linebot.NewTextMessage(common.InvalidCommand),
 		).Do()
 		if err != nil {
 			return err
@@ -64,9 +65,9 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 	}
 
 	if index >= len(quizes) {
-		_, err = bot.ReplyMessage(
+		_, err = common.Bot.ReplyMessage(
 			event.ReplyToken,
-			linebot.NewTextMessage("不正なコマンドです。"),
+			linebot.NewTextMessage(common.InvalidCommand),
 		).Do()
 		if err != nil {
 			return err
@@ -86,7 +87,7 @@ func Response(bot *linebot.Client, event *linebot.Event, message string) error {
 	// 	return err
 	// }
 
-	_, err = bot.ReplyMessage(
+	_, err = common.Bot.ReplyMessage(
 		event.ReplyToken,
 		linebot.NewTextMessage(
 			"【問題と答え】\n"+

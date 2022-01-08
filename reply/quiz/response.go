@@ -1,8 +1,11 @@
 package quiz
 
-import "github.com/line/line-bot-sdk-go/linebot"
+import (
+	"downgraded-dr.kanji/common"
+	"github.com/line/line-bot-sdk-go/linebot"
+)
 
-func Response(bot *linebot.Client, event *linebot.Event, flexQuiz []byte) error {
+func Response(event *linebot.Event, flexQuiz []byte) error {
 	var err error
 	var flexMessage linebot.FlexContainer
 
@@ -16,9 +19,9 @@ func Response(bot *linebot.Client, event *linebot.Event, flexQuiz []byte) error 
 		return err
 	}
 
-	_, err = bot.ReplyMessage(
+	_, err = common.Bot.ReplyMessage(
 		event.ReplyToken,
-		linebot.NewFlexMessage("問題に答えよ。", flexMessage),
+		linebot.NewFlexMessage(common.AnswerTheQuestion, flexMessage),
 	).Do()
 	if err != nil {
 		return err

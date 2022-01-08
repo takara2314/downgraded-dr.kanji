@@ -3,6 +3,8 @@ package quiz
 import (
 	"math/rand"
 	"time"
+
+	"downgraded-dr.kanji/common"
 )
 
 func device() ([]string, []string, int, int) {
@@ -25,17 +27,17 @@ func device() ([]string, []string, int, int) {
 	var quizes [][]string
 	switch quizTypeIndex {
 	case 0:
-		quizes = Config.Antonyms
+		quizes = common.Quizzes.Antonyms
 	case 1:
-		quizes = Config.Homonym
+		quizes = common.Quizzes.Homonym
 	case 2:
-		quizes = Config.Synonyms
+		quizes = common.Quizzes.Synonyms
 	case 3:
-		quizes = Config.Confer
+		quizes = common.Quizzes.Confer
 	case 4:
-		quizes = Config.Three
+		quizes = common.Quizzes.Three
 	case 5:
-		quizes = Config.Four
+		quizes = common.Quizzes.Four
 	}
 
 	// 問題 (index)

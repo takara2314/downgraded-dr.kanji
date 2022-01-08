@@ -1,0 +1,64 @@
+{
+    "type": "bubble",
+    "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "劣化版カンジー博士",
+                "color": "#D97706",
+                "weight": "bold"
+            }
+        ],
+        "height": "0px"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "問題",
+                "size": "xl",
+                "weight": "bold"
+            },
+            {
+                "type": "text",
+                "text": "次の同音異義語を書け。"
+            },
+            {
+                "type": "text",
+                "text": "漢字",
+                "size": "xxl",
+                "align": "center",
+                "weight": "bold",
+                "margin": "lg"
+            },
+            {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "答えを見る",
+                    "text": "answer Homonym N M"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "margin": "lg"
+            },
+            {
+                "type": "text",
+                "text": "Homonym N M",
+                "size": "sm",
+                "color": "#AAAAAA",
+                "align": "end",
+                "margin": "lg"
+            }
+        ]
+    },
+    "styles": {
+        "footer": {
+            "separator": true
+        }
+    }
+}

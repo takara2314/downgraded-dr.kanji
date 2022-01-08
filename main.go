@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"downgraded-dr.kanji/common"
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -12,7 +13,7 @@ import (
 func main() {
 	var err error
 
-	bot, err = linebot.New(
+	common.Bot, err = linebot.New(
 		os.Getenv("CHANNEL_SECRET"),
 		os.Getenv("CHANNEL_ACCESS_TOKEN"),
 	)
@@ -29,7 +30,7 @@ func main() {
 }
 
 func callbackPOST(c *gin.Context) {
-	events, err := bot.ParseRequest(c.Request)
+	events, err := common.Bot.ParseRequest(c.Request)
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
 			c.Writer.WriteHeader(400)
@@ -41,15 +42,22 @@ func callbackPOST(c *gin.Context) {
 
 	for _, event := range events {
 		if event.Type == linebot.EventTypeMessage {
+			// Get user profile to get user display name
+			profile, err := common.Bot.GetProfile(event.Source.UserID).Do()
+			if err != nil {
+				log.Println(err)
+				panic(err)
+			}
+
 			switch message := event.Message.(type) {
+
 			case *linebot.TextMessage:
-				profile, err := bot.GetProfile(event.Source.UserID).Do()
-				if err != nil {
-					log.Println(err)
-					panic(err)
-				}
-				fmt.Printf("[CHAT] %s: %s\n", profile.DisplayName, message.Text)
-				replyTextMessage(event, message.Text)
+				fmt.Printf("[TEXT] %s: %s\n", profile.DisplayName, message.Text)
+				receive.TextMessage(event, message.Text)
+
+			case *linebot.ImageMessage:
+				fmt.Printf("[IMAGE] %s %s\n", profile.DisplayName, message.OriginalContentURL)
+				receive.ImageMessage(event, message.OriginalContentURL)
 			}
 		}
 	}

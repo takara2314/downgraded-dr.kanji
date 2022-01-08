@@ -1,0 +1,65 @@
+{
+    "type": "bubble",
+    "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "劣化版カンジー博士",
+                "color": "#D97706",
+                "weight": "bold"
+            }
+        ],
+        "height": "0px"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "問題",
+                "size": "xl",
+                "weight": "bold"
+            },
+            {
+                "type": "text",
+                "text": "次の空白を埋めて類義語を完成させよ。",
+                "wrap": true
+            },
+            {
+                "type": "text",
+                "text": "漢字 ≒ 博□",
+                "size": "xxl",
+                "align": "center",
+                "weight": "bold",
+                "margin": "lg"
+            },
+            {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "答えを見る",
+                    "text": "answer Synonyms R2"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "margin": "lg"
+            },
+            {
+                "type": "text",
+                "text": "Synonyms R2",
+                "size": "sm",
+                "color": "#AAAAAA",
+                "align": "end",
+                "margin": "lg"
+            }
+        ]
+    },
+    "styles": {
+        "footer": {
+            "separator": true
+        }
+    }
+}

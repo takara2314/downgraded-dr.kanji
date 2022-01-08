@@ -1,0 +1,64 @@
+{
+    "type": "bubble",
+    "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "劣化版カンジー博士",
+                "color": "#D97706",
+                "weight": "bold"
+            }
+        ],
+        "height": "0px"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": "問題",
+                "size": "xl",
+                "weight": "bold"
+            },
+            {
+                "type": "text",
+                "text": "次の漢字を書け。"
+            },
+            {
+                "type": "text",
+                "text": "カンジ",
+                "size": "xxl",
+                "align": "center",
+                "weight": "bold",
+                "margin": "lg"
+            },
+            {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "答えを見る",
+                    "text": "answer Writing N"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "margin": "lg"
+            },
+            {
+                "type": "text",
+                "text": "Writing N",
+                "size": "sm",
+                "color": "#AAAAAA",
+                "align": "end",
+                "margin": "lg"
+            }
+        ]
+    },
+    "styles": {
+        "footer": {
+            "separator": true
+        }
+    }
+}
