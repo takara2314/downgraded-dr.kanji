@@ -13,7 +13,7 @@ import (
 
 func TextMessage(event *linebot.Event, message string) {
 	if strings.HasPrefix(message, "quiz") {
-		// Response "quiz **"
+		// Receive a text "quiz **"
 		err := quiz.Response(
 			event,
 			common.FlexQuiz,
@@ -24,7 +24,7 @@ func TextMessage(event *linebot.Event, message string) {
 		}
 
 	} else if strings.HasPrefix(message, "answer") {
-		// Response "answer **"
+		// Receive a text "answer **"
 		err := answer.Response(
 			event,
 			message,
@@ -35,7 +35,7 @@ func TextMessage(event *linebot.Event, message string) {
 		}
 
 	} else {
-		// Response else of above
+		// Receive a else text of above
 		_, err := common.Bot.ReplyMessage(
 			event.ReplyToken,
 			linebot.NewTextMessage(common.UnknownMessage),

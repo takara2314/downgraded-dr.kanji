@@ -8,6 +8,6 @@ import (
 
 func init() {
 	fmt.Println("\n///////////////////////////////////")
-	fmt.Println("//  劣化版カンジー博士", common.VERSION)
+	fmt.Println("//  劣化版カンジー博士", common.Version)
 	fmt.Println("///////////////////////////////////\n")
 }

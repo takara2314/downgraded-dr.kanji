@@ -1,17 +1,17 @@
 package state
 
-import "time"
+import (
+	"time"
+
+	"downgraded-dr.kanji/common"
+)
 
 type State struct {
 	LastReceive   time.Time
 	RapidCount    int
 	IsRapidNotice bool
-	Quiz          struct {
-		Enable bool
-		Type   string
-		No     int
-		Option string
-	}
+	IsQuizzing    bool
+	LastQuiz      common.Quiz
 }
 
 var (

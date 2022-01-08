@@ -25,7 +25,8 @@
             },
             {
                 "type": "text",
-                "text": "次の読みを答えよ。"
+                "text": "次の読みを答えよ。",
+                "wrap": true
             },
             {
                 "type": "text",
@@ -33,7 +34,8 @@
                 "size": "xxl",
                 "align": "center",
                 "weight": "bold",
-                "margin": "lg"
+                "margin": "lg",
+                "wrap": true
             },
             {
                 "type": "button",

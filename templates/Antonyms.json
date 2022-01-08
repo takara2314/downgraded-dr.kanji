@@ -34,7 +34,8 @@
                 "size": "xxl",
                 "align": "center",
                 "weight": "bold",
-                "margin": "lg"
+                "margin": "lg",
+                "wrap": true
             },
             {
                 "type": "button",

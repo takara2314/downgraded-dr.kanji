@@ -6,22 +6,24 @@ import (
 )
 
 func Response(event *linebot.Event, flexQuiz []byte) error {
-	var err error
-	var flexMessage linebot.FlexContainer
+	// Choice quiz
+	quiz := choice()
 
-	flex, err := editFlex(flexQuiz)
+	// Create JSON to send a flex message
+	flex, err := createFlexMessage(quiz)
 	if err != nil {
 		return err
 	}
 
-	flexMessage, err = linebot.UnmarshalFlexMessageJSON(flex)
+	// Convert to flex container from JSON
+	container, err := linebot.UnmarshalFlexMessageJSON(flex)
 	if err != nil {
 		return err
 	}
 
 	_, err = common.Bot.ReplyMessage(
 		event.ReplyToken,
-		linebot.NewFlexMessage(common.AnswerTheQuestion, flexMessage),
+		linebot.NewFlexMessage(common.AnswerTheQuestion, container),
 	).Do()
 	if err != nil {
 		return err
