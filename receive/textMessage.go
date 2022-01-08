@@ -38,7 +38,7 @@ func TextMessage(event *linebot.Event, message string) {
 		// Response else of above
 		_, err := common.Bot.ReplyMessage(
 			event.ReplyToken,
-			linebot.NewTextMessage("現在quizと一部のコマンド以外対応できません。\nたからーんの貴重なテスト勉強時間にワシが呼び戻されたもの。"),
+			linebot.NewTextMessage(common.UnknownMessage),
 		).Do()
 		if err != nil {
 			log.Println(err)
