@@ -47,21 +47,40 @@ func homonym(event *linebot.Event, parameters []string) error {
 	quizzesExceptContentNo = utils.StringSliceRemove(quizzesExceptContentNo, 0)
 	content := strings.Join(quizzesExceptContentNo, "、")
 
-	// Reply the content.
-	_, err = common.Bot.ReplyMessage(
-		event.ReplyToken,
-		linebot.NewTextMessage(
-			fmt.Sprintf("%s\n%s %s\n%s: %s",
-				common.SuggestedAnswerTitle,
-				content,
-				common.HomonymOneOfThese,
-				common.HomonymYomi,
-				common.Quizzes.Homonyms[no-1][0],
+	// If its quiz no has more than 4 contents, answer the all.
+	if len(common.Quizzes.Homonyms[no-1]) >= 4 {
+		// Reply the content.
+		_, err = common.Bot.ReplyMessage(
+			event.ReplyToken,
+			linebot.NewTextMessage(
+				fmt.Sprintf("%s\n%s %s\n%s: %s",
+					common.SuggestedAnswerTitle,
+					content,
+					common.HomonymOneOfThese,
+					common.HomonymYomi,
+					common.Quizzes.Homonyms[no-1][0],
+				),
 			),
-		),
-	).Do()
-	if err != nil {
-		return err
+		).Do()
+		if err != nil {
+			return err
+		}
+	} else {
+		// Reply the content.
+		_, err = common.Bot.ReplyMessage(
+			event.ReplyToken,
+			linebot.NewTextMessage(
+				fmt.Sprintf("%s\n%s\n%s: %s",
+					common.SuggestedAnswerTitle,
+					content,
+					common.HomonymYomi,
+					common.Quizzes.Homonyms[no-1][0],
+				),
+			),
+		).Do()
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

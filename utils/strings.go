@@ -93,3 +93,14 @@ func StringSliceRemove(s []string, index int) []string {
 
 	return newSlice
 }
+
+// StringSliceFind returns the index of the target element.
+func StringSliceFind(s []string, target string) int {
+	for i, str := range s {
+		if str == target {
+			return i
+		}
+	}
+
+	return -1
+}

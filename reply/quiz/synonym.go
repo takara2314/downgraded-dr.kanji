@@ -46,8 +46,14 @@ func synonym(quiz *common.Quiz) {
 	quiz.Option = fmt.Sprintf("%d,%d_%s%d", contentNo1+1, contentNo2+1, sideName, blank+1)
 
 	// Make blank.
+	correct := utils.SliceString(contents[side], blank, blank+1)
 	contents[side] = utils.ReplaceStringFromIndex(contents[side], "□", blank)
 
 	// Concat contents.
 	quiz.Content = fmt.Sprintf("%s ≒ %s", contents[0], contents[1])
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		correct,
+	}
 }

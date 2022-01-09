@@ -56,7 +56,7 @@ func confer(event *linebot.Event, parameters []string) error {
 	content := common.Quizzes.Confers[no-1][contentNo]
 
 	// If its quiz no has more than 3 contents, answer the all.
-	if len(common.Quizzes.Synonyms[no-1]) > 2 {
+	if len(common.Quizzes.Synonyms[no-1]) >= 3 {
 		// Make more content.
 		others := utils.StringSliceRemove(common.Quizzes.Confers[no-1], contentNo)
 		others = utils.StringSliceRemove(others, 0)

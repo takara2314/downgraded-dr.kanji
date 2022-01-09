@@ -44,13 +44,13 @@ var (
 )
 
 type Quiz struct {
-	Type    string
-	Section string
-	No      int
-	Option  string
-	Content string
-	Correct []string
-	Memo    string
+	Type     string
+	Section  string
+	No       int
+	Option   string
+	Content  string
+	Corrects []string
+	Memo     string
 }
 
 type QuizzesYaml struct {

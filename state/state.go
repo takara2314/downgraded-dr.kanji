@@ -11,7 +11,7 @@ type State struct {
 	RapidCount    int
 	IsRapidNotice bool
 	IsQuizzing    bool
-	LastQuiz      common.Quiz
+	LastQuiz      *common.Quiz
 }
 
 var (

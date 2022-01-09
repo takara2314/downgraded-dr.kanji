@@ -39,7 +39,9 @@ func confer(quiz *common.Quiz) {
 	quiz.Option = fmt.Sprintf("%d_%d,%d", contentNo, blanks[0]+1, blanks[1]+1)
 
 	// Make blank.
+	var correct string
 	for _, blank := range blanks {
+		correct += utils.SliceString(content, blank, blank+1)
 		content = utils.ReplaceStringFromIndex(content, "□", blank)
 	}
 
@@ -50,4 +52,9 @@ func confer(quiz *common.Quiz) {
 	quiz.Memo = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Confers[quiz.No-1][0]),
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		correct,
+	}
 }

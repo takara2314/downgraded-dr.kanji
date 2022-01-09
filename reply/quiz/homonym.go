@@ -23,4 +23,8 @@ func homonym(quiz *common.Quiz) {
 	)
 
 	quiz.Option = fmt.Sprintf("%d", contentNo)
+
+	// Make a suggested correct answer.
+	corrects := utils.StringSliceRemove(common.Quizzes.Homonyms[quiz.No-1], contentNo)
+	quiz.Corrects = utils.StringSliceRemove(corrects, 0)
 }

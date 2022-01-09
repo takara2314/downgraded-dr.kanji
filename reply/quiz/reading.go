@@ -39,6 +39,13 @@ func readingFromAntonyms(quiz *common.Quiz) {
 	quiz.Content = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Antonyms[quiz.No-1][contentNo]),
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		snipOtherMoji(
+			obtainYomiMoji(common.Quizzes.Antonyms[quiz.No-1][contentNo]),
+		),
+	}
 }
 
 func readingFromHomonyms(quiz *common.Quiz) {
@@ -55,6 +62,13 @@ func readingFromHomonyms(quiz *common.Quiz) {
 	quiz.Content = snipOtherMoji(
 		common.Quizzes.Homonyms[quiz.No-1][contentNo],
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		snipOtherMoji(
+			common.Quizzes.Homonyms[quiz.No-1][0],
+		),
+	}
 }
 
 func readingFromSynonyms(quiz *common.Quiz) {
@@ -71,6 +85,13 @@ func readingFromSynonyms(quiz *common.Quiz) {
 	quiz.Content = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Synonyms[quiz.No-1][contentNo]),
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		snipOtherMoji(
+			obtainYomiMoji(common.Quizzes.Synonyms[quiz.No-1][contentNo]),
+		),
+	}
 }
 
 func readingFromConfers(quiz *common.Quiz) {
@@ -87,6 +108,13 @@ func readingFromConfers(quiz *common.Quiz) {
 	quiz.Content = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Confers[quiz.No-1][contentNo]),
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		snipOtherMoji(
+			obtainYomiMoji(common.Quizzes.Confers[quiz.No-1][contentNo]),
+		),
+	}
 }
 
 func readingFromOthers(quiz *common.Quiz) {
@@ -100,4 +128,11 @@ func readingFromOthers(quiz *common.Quiz) {
 	quiz.Content = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Others[quiz.No-1]),
 	)
+
+	// Make a suggested correct answer.
+	quiz.Corrects = []string{
+		snipOtherMoji(
+			obtainYomiMoji(common.Quizzes.Others[quiz.No-1]),
+		),
+	}
 }
