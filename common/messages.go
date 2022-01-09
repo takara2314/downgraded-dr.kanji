@@ -6,6 +6,7 @@ const (
 	HomonymOneOfThese    = "のどれか一つ"
 	HomonymYomi          = "読み"
 	MoreSynonyms         = "ちなみに以下も類義語じゃぞ。"
+	MoreConfers          = "ちなみに以下も参照できるぞ。"
 
 	UnknownMessage = "ワシは漢字の問題を出すぐらいしかできないのう… 年じゃからのう…"
 	InvalidCommand = "不正なコマンドです。"
