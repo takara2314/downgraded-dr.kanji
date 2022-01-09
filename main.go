@@ -46,12 +46,12 @@ func callbackPOST(c *gin.Context) {
 		if event.Type == linebot.EventTypeMessage {
 			id := event.Source.UserID
 
-			// Create state if not exist state
+			// Create state if not exist state.
 			if _, exist := state.States[id]; !exist {
 				state.States[id] = &state.State{}
 			}
 
-			// Detect rapid receive
+			// Detect rapid receive.
 			diffMilli := int(time.Since(state.States[id].LastReceive) / time.Millisecond)
 			if diffMilli <= 1000 {
 				state.States[id].RapidCount += 1
@@ -62,14 +62,14 @@ func callbackPOST(c *gin.Context) {
 
 			state.States[id].LastReceive = time.Now()
 
-			// Get user profile to get user display name
+			// Get user profile to get user display name.
 			profile, err := common.Bot.GetProfile(id).Do()
 			if err != nil {
 				log.Println(err)
 				panic(err)
 			}
 
-			// Rapid notice
+			// Rapid notice.
 			if state.States[id].RapidCount >= 5 {
 				if !state.States[id].IsRapidNotice {
 					fmt.Printf("[DETECT RAPID] %s\n", profile.DisplayName)

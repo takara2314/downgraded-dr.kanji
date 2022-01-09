@@ -9,7 +9,7 @@ import (
 )
 
 func createFlexMessage(quiz common.Quiz) ([]byte, error) {
-	// Use the format matched the quiz type
+	// Use the format matched the quiz type.
 	var json string
 	switch quiz.Type {
 	case "Antonym":
@@ -30,7 +30,7 @@ func createFlexMessage(quiz common.Quiz) ([]byte, error) {
 		return nil, errors.New("it is not supported the quiz type")
 	}
 
-	// Insert quiz details
+	// Insert quiz details.
 	json = strings.Replace(
 		json,
 		"${content}",

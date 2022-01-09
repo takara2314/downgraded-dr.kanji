@@ -8,13 +8,13 @@ import (
 )
 
 func synonym(quiz *common.Quiz) {
-	// Set a section
+	// Set a section.
 	quiz.Section = "synonyms"
 
-	// Choice a quiz no
+	// Choice a quiz no.
 	quiz.No = utils.RandN(len(common.Quizzes.Synonyms)) + 1
 
-	// Choice a quiz content no
+	// Choice a quiz content no.
 	contentNo1 := utils.RandN(len(common.Quizzes.Synonyms[quiz.No-1]))
 	contentNo2 := utils.RandN(len(common.Quizzes.Synonyms[quiz.No-1]))
 	for {
@@ -24,7 +24,7 @@ func synonym(quiz *common.Quiz) {
 		contentNo2 = utils.RandN(len(common.Quizzes.Synonyms[quiz.No-1]))
 	}
 
-	// Base of a quiz content
+	// Base of a quiz content.
 	var contents [2]string
 	contents[0] = snipOtherMoji(
 		snipYomiMoji(common.Quizzes.Synonyms[quiz.No-1][contentNo1]),
@@ -33,21 +33,21 @@ func synonym(quiz *common.Quiz) {
 		snipYomiMoji(common.Quizzes.Synonyms[quiz.No-1][contentNo2]),
 	)
 
-	// Choice blank content side
+	// Choice blank content side.
 	side := utils.RandN(2)
 	sideName := "L"
 	if side == 1 {
 		sideName = "R"
 	}
 
-	// Choice blank position
+	// Choice blank position.
 	blank := utils.RandN(utils.LenString(contents[side]))
 
 	quiz.Option = fmt.Sprintf("%d,%d_%s%d", contentNo1+1, contentNo2+1, sideName, blank+1)
 
-	// Make blank
+	// Make blank.
 	contents[side] = utils.ReplaceStringFromIndex(contents[side], "□", blank)
 
-	// Concat contents
+	// Concat contents.
 	quiz.Content = fmt.Sprintf("%s ≒ %s", contents[0], contents[1])
 }

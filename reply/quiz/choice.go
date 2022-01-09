@@ -9,13 +9,13 @@ import (
 )
 
 func choice() common.Quiz {
-	// Debug: start time logging
+	// Debug: start time logging.
 	startTime := time.Now()
 
-	// Create a quiz instance
+	// Create a quiz instance.
 	quiz := common.Quiz{}
 
-	// Choice a quiz type
+	// Choice a quiz type.
 	quiz.Type = utils.RandChoiceString(common.QuizTypes)
 
 	switch quiz.Type {

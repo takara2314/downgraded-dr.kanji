@@ -73,3 +73,23 @@ func ObtainStringCovered(s string, start string, end string) string {
 
 	return s
 }
+
+// StringSliceRemove returns string slice after removed its element.
+func StringSliceRemove(s []string, index int) []string {
+	newSlice := make([]string, len(s)-1)
+
+	skipped := false
+	for i := 0; i < len(s)-1; i++ {
+		if i == index {
+			skipped = true
+		}
+
+		if skipped {
+			newSlice[i] = s[i+1]
+		} else {
+			newSlice[i] = s[i]
+		}
+	}
+
+	return newSlice
+}

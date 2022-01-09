@@ -6,16 +6,16 @@ import (
 )
 
 func Response(event *linebot.Event, flexQuiz []byte) error {
-	// Choice quiz
+	// Choice a quiz.
 	quiz := choice()
 
-	// Create JSON to send a flex message
+	// Create JSON to send a flex message.
 	flex, err := createFlexMessage(quiz)
 	if err != nil {
 		return err
 	}
 
-	// Convert to flex container from JSON
+	// Convert to flex container from JSON.
 	container, err := linebot.UnmarshalFlexMessageJSON(flex)
 	if err != nil {
 		return err
