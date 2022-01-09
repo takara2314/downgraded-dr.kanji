@@ -18,7 +18,6 @@ func TextMessage(event *linebot.Event, message string) {
 		// Receive a text "quiz **"
 		err := quiz.Response(
 			event,
-			common.FlexQuiz,
 		)
 		if err != nil {
 			log.Println(err)

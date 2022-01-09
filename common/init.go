@@ -14,9 +14,8 @@ const (
 )
 
 var (
-	Bot      *linebot.Client
-	Quizzes  QuizzesYaml
-	FlexQuiz []byte
+	Bot     *linebot.Client
+	Quizzes QuizzesYaml
 
 	AntonymFormat []byte
 	HomonymFormat []byte
@@ -77,12 +76,6 @@ func init() {
 	}
 
 	err = yaml.Unmarshal(file, &Quizzes)
-	if err != nil {
-		log.Println(err)
-		panic(err)
-	}
-
-	FlexQuiz, err = ioutil.ReadFile("./templates/quiz.json")
 	if err != nil {
 		log.Println(err)
 		panic(err)

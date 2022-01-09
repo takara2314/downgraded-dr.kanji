@@ -6,7 +6,7 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
-func Response(event *linebot.Event, flexQuiz []byte) error {
+func Response(event *linebot.Event) error {
 	// Choice a quiz.
 	quiz := choice()
 
