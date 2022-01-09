@@ -37,6 +37,20 @@ func TextMessage(event *linebot.Event, message string) {
 			panic(err)
 		}
 
+	} else if message == "sheet" {
+		// Receive a text "sheet"
+		_, err := common.Bot.ReplyMessage(
+			event.ReplyToken,
+			linebot.NewImageMessage(
+				common.ServiceURL+"/sheet.png",
+				common.ServiceURL+"/sheet.png",
+			),
+		).Do()
+		if err != nil {
+			log.Println(err)
+			panic(err)
+		}
+
 	} else {
 		// Receive a else text of above.
 

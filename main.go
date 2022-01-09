@@ -2,13 +2,17 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
+	"path/filepath"
+	"strconv"
 	"time"
 
 	"downgraded-dr.kanji/common"
 	"downgraded-dr.kanji/receive"
 	"downgraded-dr.kanji/state"
+	"downgraded-dr.kanji/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -27,6 +31,7 @@ func main() {
 
 	router := gin.Default()
 	router.POST("/callback", callbackPOST)
+	router.GET("/sheet.png", sheetGET)
 
 	router.Run(":" + os.Getenv("PORT"))
 }
@@ -95,9 +100,40 @@ func callbackPOST(c *gin.Context) {
 				receive.TextMessage(event, message.Text)
 
 			case *linebot.ImageMessage:
-				fmt.Printf("[IMAGE] %s %s\n", profile.DisplayName, message.OriginalContentURL)
-				receive.ImageMessage(event, message.OriginalContentURL)
+				// Create a temporality file.
+				filepath := filepath.Join(
+					os.TempDir(),
+					strconv.Itoa(utils.RandN(100000))+".png",
+				)
+				file, err := os.Create(filepath)
+				if err != nil {
+					log.Println(err)
+					panic(err)
+				}
+				defer file.Close()
+
+				// Get a image content.
+				content, err := common.Bot.GetMessageContent(message.ID).Do()
+				if err != nil {
+					log.Println(err)
+					panic(err)
+				}
+				defer content.Content.Close()
+
+				// Write the bytes to the field.
+				_, err = io.Copy(file, content.Content)
+				if err != nil {
+					log.Println(err)
+					panic(err)
+				}
+
+				fmt.Printf("[IMAGE] %s\n", profile.DisplayName)
+				receive.ImageMessage(event, filepath)
 			}
 		}
 	}
+}
+
+func sheetGET(c *gin.Context) {
+	c.File("./sheet.png")
 }

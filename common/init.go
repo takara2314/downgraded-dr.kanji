@@ -1,22 +1,27 @@
 package common
 
 import (
+	"context"
 	"io/ioutil"
 	"log"
 	"time"
 
+	vision "cloud.google.com/go/vision/apiv1"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"gopkg.in/yaml.v3"
 )
 
 const (
-	Version = "4Q"
+	Version    = "4Q"
+	ServiceURL = "https://downgraded-drkanji.appspot.com"
 )
 
 var (
-	Bot     *linebot.Client
-	Quizzes QuizzesYaml
+	Bot          *linebot.Client
+	VisionAPICtx context.Context
+	VisionAPI    *vision.ImageAnnotatorClient
 
+	Quizzes       QuizzesYaml
 	AntonymFormat []byte
 	HomonymFormat []byte
 	SynonymFormat []byte
@@ -69,18 +74,20 @@ func init() {
 	}
 	time.Local = loc
 
+	// Load a quiz file.
 	file, err := ioutil.ReadFile("./quizzes.yaml")
 	if err != nil {
 		log.Println(err)
 		panic(err)
 	}
-
+	// File data to a instance.
 	err = yaml.Unmarshal(file, &Quizzes)
 	if err != nil {
 		log.Println(err)
 		panic(err)
 	}
 
+	// Load quiz templates.
 	AntonymFormat, err = ioutil.ReadFile("./templates/Antonym.json")
 	if err != nil {
 		log.Println(err)
@@ -112,6 +119,15 @@ func init() {
 	}
 
 	ReadingFormat, err = ioutil.ReadFile("./templates/Reading.json")
+	if err != nil {
+		log.Println(err)
+		panic(err)
+	}
+
+	// Load and authorize Google Vision API
+	VisionAPICtx = context.Background()
+
+	VisionAPI, err = vision.NewImageAnnotatorClient(VisionAPICtx)
 	if err != nil {
 		log.Println(err)
 		panic(err)
