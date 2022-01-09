@@ -2,61 +2,58 @@ package quiz
 
 import (
 	"errors"
+	"strconv"
+	"strings"
 
 	"downgraded-dr.kanji/common"
 )
 
 func createFlexMessage(quiz common.Quiz) ([]byte, error) {
 	// Use the format matched the quiz type
-	var json []byte
+	var json string
 	switch quiz.Type {
-	case "Antonyms":
-		json = common.AntonymFormat
+	case "Antonym":
+		json = string(common.AntonymFormat)
 	case "Homonym":
-		json = common.HomonymFormat
-	case "Synonyms":
-		json = common.SynonymFormat
+		json = string(common.HomonymFormat)
+	case "Synonym":
+		json = string(common.SynonymFormat)
 	case "Confer":
-		json = common.ConferFormat
+		json = string(common.ConferFormat)
 	case "Writing":
-		json = common.WritingFormat
+		json = string(common.WritingFormat)
 	case "Reading":
-		json = common.ReadingFormat
+		json = string(common.ReadingFormat)
 	case "":
 		return nil, errors.New("the quiz type is empty")
 	default:
 		return nil, errors.New("it is not supported the quiz type")
 	}
 
-	// var quizKanji string
-	// if quizType[0] != "同音異義語" {
-	// 	quizReg := regexp.MustCompile(`^(.*)（(.*)）$`)
-	// 	quizKanji = string(quizReg.FindStringSubmatch(quiz[quizInIndex])[1])
-	// } else {
-	// 	if quizInIndex == 0 {
-	// 		quizInIndex = 1
-	// 	}
-	// 	quizKanji = quiz[quizInIndex]
-	// }
+	json = strings.Replace(
+		json,
+		"${content}",
+		quiz.Content,
+		1,
+	)
+	json = strings.Replace(
+		json,
+		"${no}",
+		strconv.Itoa(quiz.No),
+		2,
+	)
+	json = strings.Replace(
+		json,
+		"${option}",
+		quiz.Option,
+		2,
+	)
+	json = strings.Replace(
+		json,
+		"${memo}",
+		quiz.Memo,
+		1,
+	)
 
-	// result = strings.Replace(
-	// 	result,
-	// 	"${quiz_kanji}",
-	// 	quizKanji,
-	// 	1,
-	// )
-	// result = strings.Replace(
-	// 	result,
-	// 	"${quiz_type}",
-	// 	quizType[0],
-	// 	1,
-	// )
-	// result = strings.Replace(
-	// 	result,
-	// 	"${id}",
-	// 	fmt.Sprintf("%s %d", quizType[1], quizIndex),
-	// 	2,
-	// )
-
-	return json, nil
+	return []byte(json), nil
 }

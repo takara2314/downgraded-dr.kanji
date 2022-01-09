@@ -1,18 +1,5 @@
 {
     "type": "bubble",
-    "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-            {
-                "type": "text",
-                "text": "劣化版カンジー博士",
-                "color": "#D97706",
-                "weight": "bold"
-            }
-        ],
-        "height": "0px"
-    },
     "body": {
         "type": "box",
         "layout": "vertical",
@@ -21,16 +8,17 @@
                 "type": "text",
                 "text": "問題",
                 "size": "xl",
+                "color": "#D97706",
                 "weight": "bold"
             },
             {
                 "type": "text",
-                "text": "次の言葉は「漢字」と関連する。空白を埋めて完成させよ。",
+                "text": "次の言葉は「${memo}」と関連する。空白を埋めて完成させよ。",
                 "wrap": true
             },
             {
                 "type": "text",
-                "text": "漢□博□は天才のようだ",
+                "text": "${content}",
                 "size": "xxl",
                 "align": "center",
                 "weight": "bold",
@@ -42,7 +30,7 @@
                 "action": {
                     "type": "message",
                     "label": "答えを見る",
-                    "text": "answer Confer N 2-4"
+                    "text": "answer Confer ${no} ${option}"
                 },
                 "style": "secondary",
                 "height": "sm",
@@ -50,7 +38,7 @@
             },
             {
                 "type": "text",
-                "text": "Confer N 2-4",
+                "text": "Confer ${no} ${option}",
                 "size": "sm",
                 "color": "#AAAAAA",
                 "align": "end",

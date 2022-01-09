@@ -13,14 +13,15 @@ func confer(quiz *common.Quiz) {
 	quiz.No = utils.RandN(len(common.Quizzes.Confers))
 
 	// Choice a quiz content no
-	contentNo := utils.RandMN(1, len(common.Quizzes.Homonyms[quiz.No]))
+	contentNo := utils.RandMN(1, len(common.Quizzes.Confers[quiz.No]))
 
 	// Base of a quiz content
 	content := snipOtherMoji(
-		snipYomiMoji(common.Quizzes.Antonyms[quiz.No][contentNo]),
+		snipYomiMoji(common.Quizzes.Confers[quiz.No][contentNo]),
 	)
 
 	// Choice blank positions
+	fmt.Println("Confer 4-nowContent:", content)
 	var blanks []int = make([]int, 2)
 	blanks[0] = utils.RandN(utils.LenString(content))
 	blanks[1] = utils.RandN(utils.LenString(content))
@@ -42,4 +43,9 @@ func confer(quiz *common.Quiz) {
 
 	// Make a content
 	quiz.Content = content
+
+	// Make a memo
+	quiz.Memo = snipOtherMoji(
+		snipYomiMoji(common.Quizzes.Confers[quiz.No][0]),
+	)
 }

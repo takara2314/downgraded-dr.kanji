@@ -8,7 +8,7 @@ import (
 // RandN returns a random value, 0 <= x < n.
 func RandN(n int) int {
 	// Update a seed
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 
 	return rand.Intn(n)
 }

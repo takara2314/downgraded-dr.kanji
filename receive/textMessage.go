@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"downgraded-dr.kanji/common"
-	"downgraded-dr.kanji/reply/answer"
 	"downgraded-dr.kanji/reply/quiz"
 
 	"github.com/line/line-bot-sdk-go/linebot"
@@ -23,16 +22,16 @@ func TextMessage(event *linebot.Event, message string) {
 			panic(err)
 		}
 
-	} else if strings.HasPrefix(message, "answer") {
-		// Receive a text "answer **"
-		err := answer.Response(
-			event,
-			message,
-		)
-		if err != nil {
-			log.Println(err)
-			panic(err)
-		}
+		// } else if strings.HasPrefix(message, "answer") {
+		// 	// Receive a text "answer **"
+		// 	err := answer.Response(
+		// 		event,
+		// 		message,
+		// 	)
+		// 	if err != nil {
+		// 		log.Println(err)
+		// 		panic(err)
+		// 	}
 
 	} else {
 		// Receive a else text of above

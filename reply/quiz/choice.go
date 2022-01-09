@@ -1,11 +1,17 @@
 package quiz
 
 import (
+	"fmt"
+	"time"
+
 	"downgraded-dr.kanji/common"
 	"downgraded-dr.kanji/utils"
 )
 
 func choice() common.Quiz {
+	// Debug: start time logging
+	startTime := time.Now()
+
 	// Create a quiz instance
 	quiz := common.Quiz{}
 
@@ -22,6 +28,8 @@ func choice() common.Quiz {
 	case "Confer":
 		confer(&quiz)
 	}
+
+	fmt.Printf("[DEBUG] %s quizzing: %fms\n", quiz.Type, float64(time.Since(startTime)/time.Millisecond))
 
 	return quiz
 

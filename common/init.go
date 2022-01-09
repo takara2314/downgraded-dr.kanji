@@ -30,8 +30,8 @@ var (
 		"Homonym",
 		"Synonym",
 		"Confer",
-		"Writing",
-		"Reading",
+		// "Writing",
+		// "Reading",
 	}
 )
 
@@ -41,6 +41,7 @@ type Quiz struct {
 	Option  string
 	Content string
 	Correct []string
+	Memo    string
 }
 
 type QuizzesYaml struct {
