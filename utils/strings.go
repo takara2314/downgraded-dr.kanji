@@ -14,19 +14,21 @@ func SnipString(s string, a int, b int) string {
 // SnipOtherCovered returns the string snipped covered strings.
 // eg: "I want to[wanna] sleep." -> "I want to sleep."
 func SnipStringCovered(s string, start string, end string) string {
-	var startIndex int = -1
+	startIndex := -1
+	startRune := []rune(start)[0]
+	endRune := []rune(end)[0]
 
 	runed := []rune(s)
 
 	for i := 0; i < len(runed); i++ {
-		if string(runed[i]) == start && startIndex == -1 {
+		if runed[i] == startRune && startIndex == -1 {
 			startIndex = i
 			break
 		}
 	}
 
 	for i := len(runed) - 1; i >= 0; i-- {
-		if string(runed[i]) == end {
+		if runed[i] == endRune {
 			s = SnipStringCovered(SnipString(s, startIndex, i+1), start, end)
 			break
 		}

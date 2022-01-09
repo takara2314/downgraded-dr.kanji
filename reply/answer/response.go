@@ -33,16 +33,12 @@ func Response(event *linebot.Event, message string) error {
 		quizes = common.Quizzes.Antonyms
 		joinChar = "←→ "
 	case "Homonym":
-		quizes = common.Quizzes.Homonym
+		quizes = common.Quizzes.Homonyms
 	case "Synonyms":
 		quizes = common.Quizzes.Synonyms
 		joinChar = "≒ "
 	case "Confer":
-		quizes = common.Quizzes.Confer
-	case "Three":
-		quizes = common.Quizzes.Three
-	case "Four":
-		quizes = common.Quizzes.Four
+		quizes = common.Quizzes.Confers
 	default:
 		_, err = common.Bot.ReplyMessage(
 			event.ReplyToken,

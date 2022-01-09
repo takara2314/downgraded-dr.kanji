@@ -18,17 +18,17 @@ var (
 	Quizzes  QuizzesYaml
 	FlexQuiz []byte
 
-	AntonymsFormat []byte
-	HomonymFormat  []byte
-	SynonymsFormat []byte
-	ConferFormat   []byte
-	WritingFormat  []byte
-	ReadingFormat  []byte
+	AntonymFormat []byte
+	HomonymFormat []byte
+	SynonymFormat []byte
+	ConferFormat  []byte
+	WritingFormat []byte
+	ReadingFormat []byte
 
 	QuizTypes = []string{
-		"Antonyms",
+		"Antonym",
 		"Homonym",
-		"Synonyms",
+		"Synonym",
 		"Confer",
 		"Writing",
 		"Reading",
@@ -45,9 +45,9 @@ type Quiz struct {
 
 type QuizzesYaml struct {
 	Antonyms [][]string `yaml:"antonyms"`
-	Homonym  [][]string `yaml:"homonym"`
+	Homonyms [][]string `yaml:"homonyms"`
 	Synonyms [][]string `yaml:"synonyms"`
-	Confer   [][]string `yaml:"confer"`
+	Confers  [][]string `yaml:"confers"`
 	Others   []string   `yaml:"others"`
 }
 
@@ -78,7 +78,7 @@ func init() {
 		panic(err)
 	}
 
-	AntonymsFormat, err = ioutil.ReadFile("./templates/Antonyms.json")
+	AntonymFormat, err = ioutil.ReadFile("./templates/Antonym.json")
 	if err != nil {
 		log.Println(err)
 		panic(err)
@@ -90,7 +90,7 @@ func init() {
 		panic(err)
 	}
 
-	SynonymsFormat, err = ioutil.ReadFile("./templates/Synonyms.json")
+	SynonymFormat, err = ioutil.ReadFile("./templates/Synonym.json")
 	if err != nil {
 		log.Println(err)
 		panic(err)

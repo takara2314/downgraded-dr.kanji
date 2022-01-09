@@ -13,6 +13,11 @@ func RandN(n int) int {
 	return rand.Intn(n)
 }
 
+// RandMN returns a random value, m <= x < n.
+func RandMN(m int, n int) int {
+	return RandN(n-m) + m
+}
+
 // RandChoiceString returns a value chosen its slice randomly.
 func RandChoiceString(s []string) string {
 	return s[RandN(len(s))]

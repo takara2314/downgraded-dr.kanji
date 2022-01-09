@@ -11,11 +11,11 @@ func createFlexMessage(quiz common.Quiz) ([]byte, error) {
 	var json []byte
 	switch quiz.Type {
 	case "Antonyms":
-		json = common.AntonymsFormat
+		json = common.AntonymFormat
 	case "Homonym":
 		json = common.HomonymFormat
 	case "Synonyms":
-		json = common.SynonymsFormat
+		json = common.SynonymFormat
 	case "Confer":
 		json = common.ConferFormat
 	case "Writing":
