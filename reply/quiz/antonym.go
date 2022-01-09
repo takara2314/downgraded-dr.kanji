@@ -8,16 +8,19 @@ import (
 )
 
 func antonym(quiz *common.Quiz) {
+	// Set a section
+	quiz.Section = "antonyms"
+
 	// Choice a quiz no
-	quiz.No = utils.RandN(len(common.Quizzes.Antonyms))
+	quiz.No = utils.RandN(len(common.Quizzes.Antonyms)) + 1
 
 	// Base of a quiz content
 	var contents [2]string
 	contents[0] = snipOtherMoji(
-		snipYomiMoji(common.Quizzes.Antonyms[quiz.No][0]),
+		snipYomiMoji(common.Quizzes.Antonyms[quiz.No-1][0]),
 	)
 	contents[1] = snipOtherMoji(
-		snipYomiMoji(common.Quizzes.Antonyms[quiz.No][1]),
+		snipYomiMoji(common.Quizzes.Antonyms[quiz.No-1][1]),
 	)
 
 	// Choice blank content side

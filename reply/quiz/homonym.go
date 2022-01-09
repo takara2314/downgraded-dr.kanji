@@ -8,15 +8,18 @@ import (
 )
 
 func homonym(quiz *common.Quiz) {
+	// Set a section
+	quiz.Section = "homonyms"
+
 	// Choice a quiz no
-	quiz.No = utils.RandN(len(common.Quizzes.Homonyms))
+	quiz.No = utils.RandN(len(common.Quizzes.Homonyms)) + 1
 
 	// Choice a quiz content no
-	contentNo := utils.RandMN(1, len(common.Quizzes.Homonyms[quiz.No]))
+	contentNo := utils.RandMN(1, len(common.Quizzes.Homonyms[quiz.No-1]))
 
 	// Make a quiz content
 	quiz.Content = snipOtherMoji(
-		common.Quizzes.Homonyms[quiz.No][contentNo],
+		common.Quizzes.Homonyms[quiz.No-1][contentNo],
 	)
 
 	quiz.Option = fmt.Sprintf("%d", contentNo)

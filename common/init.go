@@ -30,13 +30,22 @@ var (
 		"Homonym",
 		"Synonym",
 		"Confer",
-		// "Writing",
-		// "Reading",
+		"Writing",
+		"Reading",
+	}
+
+	QuizSections = []string{
+		"antonyms",
+		"homonyms",
+		"synonyms",
+		"confers",
+		"others",
 	}
 )
 
 type Quiz struct {
 	Type    string
+	Section string
 	No      int
 	Option  string
 	Content string

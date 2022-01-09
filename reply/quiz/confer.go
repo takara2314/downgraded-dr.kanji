@@ -9,19 +9,21 @@ import (
 )
 
 func confer(quiz *common.Quiz) {
+	// Set a section
+	quiz.Section = "confers"
+
 	// Choice a quiz no
-	quiz.No = utils.RandN(len(common.Quizzes.Confers))
+	quiz.No = utils.RandN(len(common.Quizzes.Confers)) + 1
 
 	// Choice a quiz content no
-	contentNo := utils.RandMN(1, len(common.Quizzes.Confers[quiz.No]))
+	contentNo := utils.RandMN(1, len(common.Quizzes.Confers[quiz.No-1]))
 
 	// Base of a quiz content
 	content := snipOtherMoji(
-		snipYomiMoji(common.Quizzes.Confers[quiz.No][contentNo]),
+		snipYomiMoji(common.Quizzes.Confers[quiz.No-1][contentNo]),
 	)
 
 	// Choice blank positions
-	fmt.Println("Confer 4-nowContent:", content)
 	var blanks []int = make([]int, 2)
 	blanks[0] = utils.RandN(utils.LenString(content))
 	blanks[1] = utils.RandN(utils.LenString(content))
@@ -46,6 +48,6 @@ func confer(quiz *common.Quiz) {
 
 	// Make a memo
 	quiz.Memo = snipOtherMoji(
-		snipYomiMoji(common.Quizzes.Confers[quiz.No][0]),
+		snipYomiMoji(common.Quizzes.Confers[quiz.No-1][0]),
 	)
 }

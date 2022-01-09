@@ -30,6 +30,7 @@ func createFlexMessage(quiz common.Quiz) ([]byte, error) {
 		return nil, errors.New("it is not supported the quiz type")
 	}
 
+	// Insert quiz details
 	json = strings.Replace(
 		json,
 		"${content}",
@@ -53,6 +54,12 @@ func createFlexMessage(quiz common.Quiz) ([]byte, error) {
 		"${memo}",
 		quiz.Memo,
 		1,
+	)
+	json = strings.Replace(
+		json,
+		"${section}",
+		quiz.Section,
+		2,
 	)
 
 	return []byte(json), nil

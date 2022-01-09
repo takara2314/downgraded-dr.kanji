@@ -30,7 +30,7 @@
                 "action": {
                     "type": "message",
                     "label": "答えを見る",
-                    "text": "answer Writing ${no} ${option}"
+                    "text": "answer Writing ${section} ${no} ${option}"
                 },
                 "style": "secondary",
                 "height": "sm",
@@ -38,7 +38,7 @@
             },
             {
                 "type": "text",
-                "text": "Writing ${no} ${option}",
+                "text": "Writing ${section} ${no} ${option}",
                 "size": "sm",
                 "color": "#AAAAAA",
                 "align": "end",
