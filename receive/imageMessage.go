@@ -36,16 +36,20 @@ func ImageMessage(event *linebot.Event, filepath string) {
 			panic(err)
 		}
 
-		detectedText := texts[0].Description
+		detectedText := ""
 
-		// Trim unrelated chars
-		detectedText = strings.Replace(detectedText, " ", "", -1)
-		detectedText = strings.Replace(detectedText, "　", "", -1)
-		detectedText = strings.Replace(detectedText, "\n", "", -1)
+		if len(texts) > 0 {
+			detectedText := texts[0].Description
 
-		fmt.Println("[TEXT DETECTED]", detectedText)
+			// Trim unrelated chars.
+			detectedText = strings.Replace(detectedText, " ", "", -1)
+			detectedText = strings.Replace(detectedText, "　", "", -1)
+			detectedText = strings.Replace(detectedText, "\n", "", -1)
 
-		// Detected nothing
+			fmt.Println("[TEXT DETECTED]", detectedText)
+		}
+
+		// Detected nothing.
 		if detectedText == "" {
 			_, err := common.Bot.ReplyMessage(
 				event.ReplyToken,
