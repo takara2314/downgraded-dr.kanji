@@ -38,8 +38,9 @@ func ImageMessage(event *linebot.Event, filepath string) {
 
 		detectedText := ""
 
+		// Detected something.
 		if len(texts) > 0 {
-			detectedText := texts[0].Description
+			detectedText = texts[0].Description
 
 			// Trim unrelated chars.
 			detectedText = strings.Replace(detectedText, " ", "", -1)
@@ -59,6 +60,7 @@ func ImageMessage(event *linebot.Event, filepath string) {
 				log.Println(err)
 				panic(err)
 			}
+			return
 		}
 
 		// It is the correct answer if contains $~.LastQuiz.Corrects.
