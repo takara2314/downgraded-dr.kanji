@@ -15,5 +15,6 @@ const (
 	UnknownMessage    = "ワシは漢字の問題を出すぐらいしかできないのう… quiz と打つと問題を出すぞい。"
 	UnknownImage      = "目が悪くてワシには見えないのう… 出した問題の答えなら見るが…"
 	InvalidCommand    = "不正なコマンドです。"
+	InvalidParameter  = "不明なパラメータです。"
 	RapidNotice       = "連続投稿はやめてほしいのじゃ。やめるまで口を聞かんぞう。"
 )

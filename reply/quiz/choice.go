@@ -1,6 +1,7 @@
 package quiz
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -8,15 +9,19 @@ import (
 	"downgraded-dr.kanji/utils"
 )
 
-func choice() common.Quiz {
+func choice(parameters []string) (common.Quiz, error) {
 	// Debug: start time logging.
 	startTime := time.Now()
 
 	// Create a quiz instance.
 	quiz := common.Quiz{}
 
-	// Choice a quiz type.
-	quiz.Type = utils.RandChoiceString(common.QuizTypes)
+	// Choice a quiz type if user does not select it.
+	if parameters[1] == "" {
+		quiz.Type = utils.RandChoiceString(common.QuizTypes)
+	} else {
+		quiz.Type = parameters[1]
+	}
 
 	switch quiz.Type {
 	case "Antonym":
@@ -31,11 +36,13 @@ func choice() common.Quiz {
 		writing(&quiz)
 	case "Reading":
 		reading(&quiz)
+	default:
+		return quiz, errors.New("invalid parameter")
 	}
 
 	fmt.Printf("[DEBUG] %s quizzing: %fms\n", quiz.Type, float64(time.Since(startTime)/time.Millisecond))
 
-	return quiz
+	return quiz, nil
 }
 
 // snipOtherMoji returns the moji snipped other moji.
